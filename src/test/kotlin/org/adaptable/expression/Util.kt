@@ -11,7 +11,7 @@ object Util {
     val tokeniser = Tokeniser(safeConfig)
     val parser = ExpressionParser(safeConfig)
 
-    fun getMockLoader(): TypeLoader {
+    private fun getMockLoader(): TypeLoader {
         val typeLoader = mock(TypeLoader::class.java)
         whenever(typeLoader.getExtensions()).thenReturn(emptyList())
         return typeLoader
