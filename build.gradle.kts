@@ -16,7 +16,7 @@ version = "1.0.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 val projectDescription = "Adaptable expression language"
 
-val githubRepo = "markgregg/aqdaptable-expression"
+val githubRepo = "markgregg/adaptable-expression"
 val licenseUrl = "https://opensource.org/licenses/Apache-2.0"
 val licenseName = "Apache 2"
 
