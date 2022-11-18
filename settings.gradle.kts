@@ -1,1 +1,1 @@
-rootProject.name = "aqdaptable-expression"
+rootProject.name = "adaptable-expression"
