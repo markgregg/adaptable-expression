@@ -20,7 +20,7 @@ val githubRepo = "markgregg/aqdaptable-expression"
 val licenseUrl = "https://opensource.org/licenses/Apache-2.0"
 val licenseName = "Apache 2"
 
-val kotestVersion = "5.4.4"
+val kotestVersion = "5.4.2"
 val mockitoKotlinVersion = "3.2.0"
 
 repositories {
