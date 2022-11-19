@@ -100,16 +100,14 @@ publishing {
 			}
 		}
 	}
-}
-
-repositories {
-	maven {
-		name = "GitHubPackages"
-		url = uri("https://maven.pkg.github.com/markgregg/adaptable-expression")
-		credentials {
-			username = System.getenv("PUBLISH_USER")
-			password =
-				System.getenv("ADAPTABLE_TOKEN")
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = uri("https://maven.pkg.github.com/markgregg/adaptable-expression")
+			credentials {
+				username = System.getenv("PUBLISH_USER")
+				password = System.getenv("ADAPTABLE_TOKEN")
+			}
 		}
 	}
 }
