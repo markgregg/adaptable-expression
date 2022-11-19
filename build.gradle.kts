@@ -100,7 +100,7 @@ publishing {
 			}
 		}
 	}
-#
+
 	repositories {
 		maven {
 			name = "GitHubPackages"
