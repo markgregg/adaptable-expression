@@ -1,4 +1,4 @@
-# aqdaptable.expression
+# aqdaptable-expression
 A highly customisable expression language
 
 Adaptable projects
