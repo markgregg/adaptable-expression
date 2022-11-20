@@ -8,7 +8,6 @@ plugins {
 	`maven-publish`
 	signing
 	id("org.jetbrains.dokka") version "1.4.20"
-
 }
 
 group = "org.adaptable"
