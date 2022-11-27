@@ -112,8 +112,8 @@ publishing {
 			name = "mavenSnapshots"
 			url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 			credentials {
-				username = providers.gradleProperty("ossrhUsername").get()
-				password = providers.gradleProperty("ossrhPassword").get()
+				username = providers.gradleProperty("ossrhUsername").orElse("Not found").get()
+				password = providers.gradleProperty("ossrhPassword").orElse("Not found").get()
 			}
 		}
 	}
