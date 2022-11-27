@@ -10,7 +10,7 @@ plugins {
 	id("org.jetbrains.dokka") version "1.4.20"
 }
 
-group = "org.adaptable"
+group = "io.github.markgregg"
 version = "1.0.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 val projectDescription = "Adaptable expression language"
@@ -99,15 +99,27 @@ publishing {
 			}
 		}
 	}
-
 	repositories {
 		maven {
-			name = "GitHubPackages"
-			url = uri("https://maven.pkg.github.com/markgregg/adaptable-expression")
+			name = "mavenStaging"
+			url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
 			credentials {
-				username = System.getenv("USERNAME")
-				password = System.getenv("TOKEN")
+				username = providers.gradleProperty("ossrhUsername").get()
+				password = providers.gradleProperty("ossrhPassword").get()
 			}
 		}
+		maven {
+			name = "mavenSnapshots"
+			url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+			credentials {
+				username = providers.gradleProperty("ossrhUsername").get()
+				password = providers.gradleProperty("ossrhPassword").get()
+			}
+		}
+	}
+
+
+	signing {
+		sign(publishing.publications["maven"])
 	}
 }
