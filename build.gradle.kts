@@ -104,8 +104,8 @@ publishing {
 			name = "mavenStaging"
 			url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
 			credentials {
-				username = providers.gradleProperty("ossrhUsername").get()
-				password = providers.gradleProperty("ossrhPassword").get()
+				username = providers.gradleProperty("ossrhUsername").orElse("Not found").get()
+				password = providers.gradleProperty("ossrhPassword").orElse("Not found").get()
 			}
 		}
 		maven {
