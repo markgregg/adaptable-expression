@@ -1,3 +1,3 @@
 package io.github.markgregg.expression.exceptions
 
-class UnknownFunctionException(message: String): Exception(message)
+class UnknownFunctionException(message: String): RuntimeException(message)

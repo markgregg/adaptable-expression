@@ -12,12 +12,11 @@ class NotEqualsOperation(
     leftOperation: Operation,
     rightOperation: Operation
 ) : BinaryOperation(leftOperation, rightOperation)  {
-    override fun execute(context: Context): Any {
-        return areNotEquals(leftOperation.execute(context), rightOperation.execute(context))
-    }
+    override fun execute(context: Context): Any =
+        areNotEquals(leftOperation.execute(context), rightOperation.execute(context))
 
-    private fun areNotEquals(value1: Any, value2: Any): Boolean {
-        return when(value1) {
+    private fun areNotEquals(value1: Any, value2: Any): Boolean =
+        when(value1) {
             is String -> {
                 value1 != (castToType(value2, String::class.java) as String)
             }
@@ -40,5 +39,4 @@ class NotEqualsOperation(
                 throw IncompatibleTypeException("${value1.javaClass.name} cannot be compared")
             }
         }
-    }
 }

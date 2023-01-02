@@ -12,12 +12,11 @@ class AddOperation(
     leftOperation: Operation,
     rightOperation: Operation
 ) : BinaryOperation(leftOperation, rightOperation) {
-    override fun execute(context: Context): Any {
-        return add(leftOperation.execute(context), rightOperation.execute(context))
-    }
+    override fun execute(context: Context): Any =
+        add(leftOperation.execute(context), rightOperation.execute(context))
 
-    private fun add(value1: Any, value2: Any): Any {
-        return when(value1) {
+    private fun add(value1: Any, value2: Any): Any =
+        when(value1) {
             is String -> {
                 value1 + (castToType(value2, String::class.java) as String)
             }
@@ -48,5 +47,5 @@ class AddOperation(
                 throw IncompatibleTypeException("${value1.javaClass.name} cannot be add")
             }
         }
-    }
+
 }

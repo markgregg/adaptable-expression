@@ -6,7 +6,5 @@ import io.github.markgregg.expression.operations.Operation
 class BooleanOperation(
     private val bool: Boolean
 ): Operation {
-    override fun execute(context: Context): Any {
-        return bool
-    }
+    override fun execute(context: Context): Any =  bool
 }

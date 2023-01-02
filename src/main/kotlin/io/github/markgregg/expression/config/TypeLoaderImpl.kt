@@ -4,11 +4,11 @@ import io.github.classgraph.ClassGraph
 import io.github.markgregg.expression.annotations.Configuration
 
 class TypeLoaderImpl(private val filter: String? = null) : TypeLoader {
+
     private var extensions: List<Class<*>>? = null
 
-    override fun override(): Boolean {
-        return getExtensions().firstOrNull { !it.getAnnotation(Configuration::class.java).extend } != null
-    }
+    override fun override(): Boolean =
+        getExtensions().firstOrNull { !it.getAnnotation(Configuration::class.java).extend } != null
 
     override fun getExtensions(): List<Class<*>> {
         if( extensions == null ) {

@@ -17,15 +17,12 @@ class Evaluator internal constructor(val configuration: Configuration){
     private val tokeniser = Tokeniser(configuration)
     private val parser = ExpressionParser(configuration)
 
-    fun evaluate(expression: String, context: Context): Any {
-        return parser.parse(tokeniser.tokenise(expression)).execute(context)
-    }
+    fun evaluate(expression: String, context: Context): Any =
+        parser.parse(tokeniser.tokenise(expression)).execute(context)
 
-    fun compile(expression: String): Operation {
-        return parser.parse(tokeniser.tokenise(expression))
-    }
+    fun compile(expression: String): Operation =
+        parser.parse(tokeniser.tokenise(expression))
 
-    fun execute(operation: Operation, context: Context): Any {
-        return operation.execute(context)
-    }
+    fun execute(operation: Operation, context: Context): Any =
+        operation.execute(context)
 }

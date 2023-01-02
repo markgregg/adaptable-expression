@@ -12,12 +12,11 @@ class DivideOperation(
     leftOperation: Operation,
     rightOperation: Operation
 ) : BinaryOperation(leftOperation, rightOperation) {
-    override fun execute(context: Context): Any {
-        return divide(leftOperation.execute( context), rightOperation.execute(context))
-    }
+    override fun execute(context: Context): Any =
+        divide(leftOperation.execute( context), rightOperation.execute(context))
 
-    private fun divide(value1: Any, value2: Any): Any {
-        return when(value1) {
+    private fun divide(value1: Any, value2: Any): Any =
+        when(value1) {
             is String -> {
                 throw IncompatibleTypeException("Strings cannot be divided")
             }
@@ -48,5 +47,5 @@ class DivideOperation(
                 throw IncompatibleTypeException("${value1.javaClass.name} cannot be divided")
             }
         }
-    }
+
 }

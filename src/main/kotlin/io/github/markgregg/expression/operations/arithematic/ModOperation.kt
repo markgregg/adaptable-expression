@@ -12,12 +12,11 @@ class ModOperation(
     leftOperation: Operation,
     rightOperation: Operation
 ) : BinaryOperation(leftOperation, rightOperation) {
-    override fun execute(context: Context): Any {
-        return minus(leftOperation.execute(context), rightOperation.execute(context))
-    }
+    override fun execute(context: Context): Any =
+        minus(leftOperation.execute(context), rightOperation.execute(context))
 
-    private fun minus(value1: Any, value2: Any): Any {
-        return when(value1) {
+    private fun minus(value1: Any, value2: Any): Any =
+        when(value1) {
             is String -> {
                 throw IncompatibleTypeException("Strings cannot be mod")
             }
@@ -40,5 +39,4 @@ class ModOperation(
                 throw IncompatibleTypeException("${value1.javaClass.name} cannot be mod")
             }
         }
-    }
 }

@@ -8,7 +8,7 @@ import io.github.markgregg.expression.operations.Util.castToType
 class NotOperation(
     operation: Operation,
 ) : UnaryOperation(operation) {
-    override fun execute(context: Context): Any {
-        return !(castToType(operation.execute(context), Boolean::class.java) as Boolean)
-    }
+    override fun execute(context: Context): Any =
+        !(castToType(operation.execute(context), Boolean::class.java) as Boolean)
+
 }

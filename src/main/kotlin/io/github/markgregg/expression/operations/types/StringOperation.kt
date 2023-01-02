@@ -6,7 +6,5 @@ import io.github.markgregg.expression.operations.Operation
 class StringOperation(
     private val text: String,
 ) : Operation {
-    override fun execute(context: Context): Any {
-        return text
-    }
+    override fun execute(context: Context): Any = text
 }

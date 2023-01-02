@@ -38,7 +38,7 @@ class ArrayOperation(
 
     private class ArrayContext(
         val currentElement: ObjectNode
-    ) : io.github.markgregg.expression.Context {
+    ) : Context {
         override fun getItem(name: String): Any {
             return getJsonValue(currentElement.get(name))
         }

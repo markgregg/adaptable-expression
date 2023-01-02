@@ -16,7 +16,7 @@ import io.github.markgregg.expression.operations.logical.NotOperation
 import io.github.markgregg.expression.operations.logical.OrOperation
 import io.github.markgregg.expression.operations.relational.*
 
-class Configuration internal constructor(typeLoader: TypeLoader){
+class Configuration internal constructor(typeLoader: TypeLoader) {
     companion object {
         internal val instance = Configuration(TypeLoaderImpl())
     }
@@ -66,8 +66,8 @@ class Configuration internal constructor(typeLoader: TypeLoader){
         return functions[name]
     }
 
-    private fun getInitialElements(): List<Element> {
-        return listOf(
+    private fun getInitialElements(): List<Element> =
+        listOf(
             Element("[", "]",ArrayOperation::class.java, OperandType.Binary, 0 ),
             Element( ".", null, FieldOperation::class.java, OperandType.Unary, 0, applyBefore = true, nameFollows = true),
             Element( "$", null, ContextOperation::class.java, OperandType.NotOperand, 0),
@@ -87,10 +87,9 @@ class Configuration internal constructor(typeLoader: TypeLoader){
             Element( "%", null,ModOperation::class.java, OperandType.Binary, 4),
             Element( "!", null,NotOperation::class.java, OperandType.Unary, 999)
         )
-    }
 
-    private fun getInitialFunctions(): Map<String, FunctionDeclaration> {
-        val functions = listOf(
+    private fun getInitialFunctions(): Map<String, FunctionDeclaration> =
+        listOf(
             Function("left", Functions::left, listOf(String::class.java,Long::class.java)),
             Function("right", Functions::right, listOf(String::class.java,Long::class.java)),
             Function("substr", Functions::substring, listOf(String::class.java,Long::class.java, Long::class.java)),
@@ -107,13 +106,10 @@ class Configuration internal constructor(typeLoader: TypeLoader){
             Function("todatetime", Functions::toDateTime, listOf(Any::class.java)),
             ParameterlessFunction("today", Functions::getDate),
             ParameterlessFunction("now", Functions::getDateTime),
-        )
+        ).associateBy { it.name }
 
-        return functions.associateBy { it.name }
-    }
-
-    private fun loadExtensionElements(typeLoader: TypeLoader): List<Element> {
-        return typeLoader.getExtensions().map { clazz ->
+    private fun loadExtensionElements(typeLoader: TypeLoader): List<Element> =
+        typeLoader.getExtensions().map { clazz ->
             clazz.declaredMethods.filter { method ->
                 method.getAnnotation(Elements::class.java) != null
             }.map { method ->
@@ -125,7 +121,7 @@ class Configuration internal constructor(typeLoader: TypeLoader){
                     .filterIsInstance(Element::class.java)
             }
         }
-    }
+
 
     private fun loadExtensionFunctions(typeLoader: TypeLoader): Map<String, FunctionDeclaration> {
         return typeLoader.getExtensions().map { clazz ->

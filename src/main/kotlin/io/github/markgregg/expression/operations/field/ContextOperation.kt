@@ -6,7 +6,7 @@ import io.github.markgregg.expression.operations.Operation
 class ContextOperation(
     private val field: String
 ) : Operation {
-    override fun execute(context: Context): Any {
-        return context.getItem(field)
-    }
+    override fun execute(context: Context): Any =
+        context.getItem(field)
+
 }

@@ -7,7 +7,5 @@ import java.time.LocalDate
 class DateOperation(
     private val localDate: LocalDate
 ) : Operation {
-    override fun execute(context: Context): Any {
-        return localDate
-    }
+    override fun execute(context: Context): Any = localDate
 }

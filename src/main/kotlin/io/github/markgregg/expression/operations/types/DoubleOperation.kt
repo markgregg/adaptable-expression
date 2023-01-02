@@ -6,7 +6,5 @@ import io.github.markgregg.expression.operations.Operation
 class DoubleOperation(
     private val value: Double
 ) : Operation {
-    override fun execute(context: Context): Any {
-        return value
-    }
+    override fun execute(context: Context): Any = value
 }

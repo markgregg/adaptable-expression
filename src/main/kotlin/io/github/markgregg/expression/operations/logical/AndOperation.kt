@@ -8,8 +8,8 @@ class AndOperation(
     leftOperation: Operation,
     rightOperation: Operation
 ) : BinaryOperation(leftOperation, rightOperation) {
-    override fun execute(context: Context): Any {
-        return leftOperation.execute(context) as Boolean &&
+    override fun execute(context: Context): Any =
+        leftOperation.execute(context) as Boolean &&
                 rightOperation.execute(context) as Boolean
-    }
+
 }

@@ -12,12 +12,11 @@ class LessEqualsOperation(
     leftOperation: Operation,
     rightOperation: Operation
 ) : BinaryOperation(leftOperation, rightOperation)  {
-    override fun execute(context: Context): Any {
-        return isLessEquals(leftOperation.execute(context), rightOperation.execute(context))
-    }
+    override fun execute(context: Context): Any =
+        isLessEquals(leftOperation.execute(context), rightOperation.execute(context))
 
-    private fun isLessEquals(value1: Any, value2: Any): Boolean {
-        return when(value1) {
+    private fun isLessEquals(value1: Any, value2: Any): Boolean =
+        when(value1) {
             is String -> {
                 value1 <= (castToType(value2, String::class.java) as String)
             }
@@ -37,5 +36,5 @@ class LessEqualsOperation(
                 throw IncompatibleTypeException("${value1.javaClass.name} cannot be compared")
             }
         }
-    }
+
 }

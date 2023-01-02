@@ -11,8 +11,8 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 object Util {
-    fun getJsonValue(node: JsonNode): Any {
-        return if( node is ObjectNode || node is ArrayNode) {
+    fun getJsonValue(node: JsonNode): Any =
+        if( node is ObjectNode || node is ArrayNode) {
             node
         } else if( node.isLong || node.isInt || node.isShort ) {
             node.longValue()
@@ -23,10 +23,9 @@ object Util {
         } else {
             node.textValue()
         }
-    }
 
-    fun convertToScriptType(value: Any): Any{
-        return when(value) {
+    fun convertToScriptType(value: Any): Any =
+        when(value) {
             is Int -> value.toLong()
             is Short -> value.toLong()
             is Byte -> value.toLong()
@@ -36,10 +35,10 @@ object Util {
             is Timestamp -> value.toLocalDateTime()
             else -> value
         }
-    }
 
-    fun castToType(value: Any, class2: Class<*>): Any {
-        return when(class2) {
+
+    fun castToType(value: Any, class2: Class<*>): Any =
+        when(class2) {
             String::class.java -> value.toString()
             Boolean::class.java -> {
                 when(value) {
@@ -88,5 +87,4 @@ object Util {
                 throw CastException("${class2.name} not handled")
             }
         }
-    }
 }

@@ -12,12 +12,11 @@ class GreaterOperation(
     leftOperation: Operation,
     rightOperation: Operation
 ) : BinaryOperation(leftOperation, rightOperation)  {
-    override fun execute(context: Context): Any {
-        return isGreater(leftOperation.execute(context), rightOperation.execute(context))
-    }
+    override fun execute(context: Context): Any =
+        isGreater(leftOperation.execute(context), rightOperation.execute(context))
 
-    private fun isGreater(value1: Any, value2: Any): Boolean {
-        return when(value1) {
+    private fun isGreater(value1: Any, value2: Any): Boolean =
+        when(value1) {
             is String -> {
                 value1 > (castToType(value2, String::class.java) as String)
             }
@@ -37,5 +36,5 @@ class GreaterOperation(
                 throw IncompatibleTypeException("${value1.javaClass.name} cannot be compared")
             }
         }
-    }
+
 }

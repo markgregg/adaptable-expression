@@ -18,9 +18,7 @@ class ExpressionParser internal constructor(val configuration: Configuration){
     companion object {
         private val instance = ExpressionParser(Configuration.instance)
         @JvmStatic
-        fun instance(): ExpressionParser {
-            return ExpressionParser.Companion.instance
-        }
+        fun instance(): ExpressionParser = instance
     }
 
     fun parse(tokens: List<Token>): Operation {
@@ -113,8 +111,8 @@ class ExpressionParser internal constructor(val configuration: Configuration){
         }
     }
 
-    private fun getDateTime(date: String): Any {
-        return try {
+    private fun getDateTime(date: String): Any =
+        try {
             if (date.length == 10) {
                 LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE)
             } else {
@@ -123,10 +121,9 @@ class ExpressionParser internal constructor(val configuration: Configuration){
         } catch (e: Exception) {
             throw InvalidDateException("$date is not a recognised format, please use ISO")
         }
-    }
 
-    private fun getNameOp(tokens: List<Token>, token: Token, position: AtomicInteger): Operation {
-        return if( position.get() < tokens.size && tokens[position.get()].token == configuration.functionStart.toString() ) {
+    private fun getNameOp(tokens: List<Token>, token: Token, position: AtomicInteger): Operation =
+        if( position.get() < tokens.size && tokens[position.get()].token == configuration.functionStart.toString() ) {
             val function = configuration.getFunction(token.token) ?: throw UnknownFunctionException("Function ${token.token} cannot be found")
             position.incrementAndGet()
             val parameters = if( function is Function) {
@@ -157,10 +154,10 @@ class ExpressionParser internal constructor(val configuration: Configuration){
         } else {
             throw MissingSymbolException("Expecting a ( to follow function ${token.token} at ${token.start}")
         }
-    }
 
-    private fun getUnaryOp(tokens: List<Token>, element: Element, position: AtomicInteger, leftOp: Operation?, symbol: String?): Operation {
-        return if( element.nameFollows ) {
+
+    private fun getUnaryOp(tokens: List<Token>, element: Element, position: AtomicInteger, leftOp: Operation?, symbol: String?): Operation =
+        if( element.nameFollows ) {
             val token = tokens[position.getAndIncrement()]
             if( token.tokenType != TokenType.Name) {
                 throw MissingSymbolException("Expecting name following ${element.token1} at ${token.start}")
@@ -171,10 +168,9 @@ class ExpressionParser internal constructor(val configuration: Configuration){
             val op = getOperation(tokens, element, position, leftOp, symbol)
             element.operation.getDeclaredConstructor(Operation::class.java).newInstance(op) as Operation
         }
-    }
 
-    private fun getOperation(tokens: List<Token>, element: Element, position: AtomicInteger, leftOp: Operation?, symbol: String?): Operation {
-        return if( element.applyBefore ) {
+    private fun getOperation(tokens: List<Token>, element: Element, position: AtomicInteger, leftOp: Operation?, symbol: String?): Operation =
+        if( element.applyBefore ) {
             if( leftOp == null ) {
                 throw ParseException("Unary operator ${element.token1} must be applied to something")
             }
@@ -182,7 +178,6 @@ class ExpressionParser internal constructor(val configuration: Configuration){
         } else {
             getOperation(tokens, position, symbol, element.precedence)
         }
-    }
 
     private fun getBinaryOp(tokens: List<Token>, element: Element, position: AtomicInteger, leftOp: Operation, symbol: String?): Operation {
         val rightOp = getOperation(tokens, position, element.token2 ?: symbol, element.precedence)

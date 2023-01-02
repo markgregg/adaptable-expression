@@ -12,12 +12,12 @@ class MultiplyOperation(
     leftOperation: Operation,
     rightOperation: Operation
 ) : BinaryOperation(leftOperation, rightOperation) {
-    override fun execute(context: Context): Any {
-        return multiply(leftOperation.execute(context), rightOperation.execute(context))
-    }
+    override fun execute(context: Context): Any =
+        multiply(leftOperation.execute(context), rightOperation.execute(context))
 
-    private fun multiply(value1: Any, value2: Any): Any {
-        return when(value1) {
+
+    private fun multiply(value1: Any, value2: Any): Any =
+        when(value1) {
             is String -> {
                 throw IncompatibleTypeException("Strings cannot be multiplied")
             }
@@ -48,5 +48,5 @@ class MultiplyOperation(
                 throw IncompatibleTypeException("${value1.javaClass.name} cannot be multiplied")
             }
         }
-    }
+
 }

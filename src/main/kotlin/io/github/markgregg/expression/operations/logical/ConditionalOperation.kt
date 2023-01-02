@@ -9,11 +9,11 @@ class ConditionalOperation(
     centerOperation: Operation,
     rightOperation: Operation
 ) : TernaryOperation(leftOperation, centerOperation, rightOperation) {
-    override fun execute(context: Context): Any {
-        return if( leftOperation.execute(context) as Boolean) {
+    override fun execute(context: Context): Any =
+        if( leftOperation.execute(context) as Boolean) {
             centerOperation.execute(context)
         } else {
             rightOperation.execute(context)
         }
-    }
+
 }
